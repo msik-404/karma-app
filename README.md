@@ -119,5 +119,5 @@ mongo-express to easily inspect database contents. Under [/test-deployment]  fol
 [docker-compose-yaml]: https://github.com/msik-404/karma-app/blob/main/docker-compose.yaml
 [rest-api-docs]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#rest-api
 [Transaction requirement]: https://github.com/msik-404/karma-app-posts#transaction-requirements
-[/test-deployment]: 
-[test-docker-compose.yaml]: 
+[/test-deployment]: https://github.com/msik-404/karma-app/tree/main/test-deployment
+[test-docker-compose.yaml]: https://github.com/msik-404/karma-app/blob/main/test-deployment/docker-compose.yaml
