@@ -26,7 +26,7 @@ Check out other karma-app microservices:
 
 [gRPC] is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment. 
 gRPC simplifies microservices API implementation and later the usage of the API. gRPC is self-documenting, all available 
-service methods and message structures can be found inside [proto file][karma-app-users.proto].
+service methods and message structures can be found inside [karma-app-users.proto].
 
 In this project to help with message validation I use: [protovalidate-java]. This project significantly simplifies 
 validation of messages and reduces the time required to build stable system. Additionally potential user of this 
