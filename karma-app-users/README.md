@@ -12,7 +12,7 @@ Check out other karma-app microservices:
 - Java 21
 - MongoDB
 - Docker
-- gRPC
+- [gRPC]
 - Java spring
 - [spring-boot-starter-data-mongodb]
 - spring-boot-starter-test
@@ -47,7 +47,7 @@ them would case code-duplication and smelly code.
 
 ## gRPC API
 
-Documentation for the API can be found [gRPC-API-docs]
+Documentation for the API can be found [here][gRPC-API-docs].
 
 ## Exception encoding
 
