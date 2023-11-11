@@ -99,9 +99,11 @@ docker compose down -v
 ```
 
 ## Deployment for testing
-There is also testing variant of the deployment which exposes every container port for connection. It also uses 
-mongo-express to easily inspect database contents. Under [/test-deployment]  folder one can find 
-[docker-compose.yaml][test-docker-compose.yaml]. Note to use this one needs to copy .env file Under [/test-deployment].
+There is also testing variant of the deployment [docker-compose.yaml][test-docker-compose.yaml], which exposes every 
+container port for connection. It also uses mongo-express to easily inspect database contents.
+
+To run this variant, one must go under [/test-deployment] folder, copy .env used for normal deployment and run previously
+mentioned docker compose commands.
 
 # Further development
 
