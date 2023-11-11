@@ -55,7 +55,7 @@ When some exception which is not critical is thrown on the backend side, it is b
 gRPC code to the caller. Each exception has its unique identifier. With this it can be decoded on the caller side.
 In this setup client side can use the same exception classes as backend.
 
-[encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This 
+[Encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This 
 EXCEPTION_ID can be parsed with simple regex.
 
 Each encodable exception must implement [EncodableException] and [GrpcStatusException].
@@ -149,7 +149,7 @@ docker compose down -v
 [mongo_object_id.proto]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/proto/mongo_object_id.proto
 [proto folder]: https://github.com/msik-404/karma-app/tree/main/karma-app-users/src/main/proto
 [gRPC-API-docs]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/gRPC_API_docs.md
-[encoding class]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/encoding/ExceptionEncoder.java
+[Encoding class]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/encoding/ExceptionEncoder.java
 [EncodableException]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/encoding/EncodableException.java
 [GrpcStatusException]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/grpc/impl/exception/GrpcStatusException.java
 [src/test]: https://github.com/msik-404/karma-app/tree/main/karma-app-users/src/test
