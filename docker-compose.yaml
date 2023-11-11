@@ -29,12 +29,12 @@ services:
   posts-backend:
     build: ./karma-app-posts
     image: msik/karma-app-posts
+    env_file:
+      - .env
     hostname: ${KARMA_APP_POSTS_HOST}
     networks:
       - karma-app-posts-net
       - karma-app-net
-    env_file:
-      - .env
     depends_on:
       posts-mongo:
         condition: service_healthy
@@ -61,12 +61,12 @@ services:
   users-backend:
     build: ./karma-app-users
     image: msik/karma-app-users
+    env_file:
+      - .env
     hostname: ${KARMA_APP_USERS_HOST}
     networks:
       - karma-app-users-net
       - karma-app-net
-    env_file:
-      - .env
     depends_on:
       - users-mongo
   users-mongo:

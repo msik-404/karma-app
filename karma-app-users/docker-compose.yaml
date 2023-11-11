@@ -4,13 +4,13 @@ services:
   backend:
     build: .
     image: msik/karma-app-users
+    env_file:
+      - .env
     hostname: ${KARMA_APP_USERS_HOST}
     ports:
       - 50052:50051
     networks:
       - net
-    env_file:
-      - .env
     depends_on:
       - mongo
 
