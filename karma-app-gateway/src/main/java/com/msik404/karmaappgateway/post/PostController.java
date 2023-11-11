@@ -491,7 +491,7 @@ public class PostController {
             ),
     })
     @SecurityRequirement(name = SwaggerConfiguration.AUTH)
-    @PostMapping("user/posts")
+    @PostMapping(value = "user/posts", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> create(
 
             @Parameter(
