@@ -176,4 +176,4 @@ docker compose down -v
 [mongo health-check]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/docker-compose.yaml#L33
 [application.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/resources/application.yaml
 [docker-compose.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/docker-compose.yaml
-[Transaction requirement]: https://github.com/msik-404/karma-app-posts#transaction-requirements
+[Transaction requirement]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts#transaction-requirements

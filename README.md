@@ -113,4 +113,4 @@ docker compose down -v
 [karma-app-monolith]: https://github.com/msik-404/karma-app-monolith
 [karma-app-yaml]: https://github.com/msik-404/karma-app/blob/main/docker-compose.yaml
 [rest-api-docs]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#rest-api
-[Transaction requirement]: (https://github.com/msik-404/karma-app-posts#transaction-requirements)
+[Transaction requirement]: https://github.com/msik-404/karma-app-posts#transaction-requirements
