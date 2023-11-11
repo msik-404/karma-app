@@ -88,7 +88,7 @@ When some exception which is not critical is thrown on the backend side, it is b
 gRPC code to the caller. Each exception has its unique identifier. With this it can be decoded on the caller side.
 In this setup client side can use the same exception classes as backend.
 
-Simple [encoding class] which simply inserts "exceptionId EXCEPTION_ID" at the begging of error message. This 
+[encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This 
 EXCEPTION_ID can be parsed with simple regex.
 
 Each encodable exception must implement [EncodableException]and [GrpcStatusException].
