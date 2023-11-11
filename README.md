@@ -78,9 +78,9 @@ See [Transaction requirement] on how to generate keyfile.
 To start the app locally, docker compose is required.
 
 In this repository one can
-find [docker-compose-yaml][karma-app-yaml].
+find [docker-compose-yaml].
 
-To start the app one should run in the root of the project:
+To start the app one should run in the root of the repository:
 
 ```
 docker compose up
@@ -98,6 +98,11 @@ To remove containers and their data:
 docker compose down -v
 ```
 
+## Deployment for testing
+There is also testing variant of the deployment which exposes every container port for connection. It also uses 
+mongo-express to easily inspect database contents. Under [/test-deployment]  folder one can find 
+[docker-compose.yaml][test-docker-compose.yaml]. Note to use this one needs to copy .env file Under [/test-deployment].
+
 # Further development
 
 - Unfortunately this app does not have frontend yet. Maybe in the future front will be developed. Because of the lack
@@ -111,6 +116,8 @@ docker compose down -v
 [karma-app-posts]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts
 [karma-app-users]: https://github.com/msik-404/karma-app/tree/main/karma-app-users
 [karma-app-monolith]: https://github.com/msik-404/karma-app-monolith
-[karma-app-yaml]: https://github.com/msik-404/karma-app/blob/main/docker-compose.yaml
+[docker-compose-yaml]: https://github.com/msik-404/karma-app/blob/main/docker-compose.yaml
 [rest-api-docs]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#rest-api
 [Transaction requirement]: https://github.com/msik-404/karma-app-posts#transaction-requirements
+[/test-deployment]: 
+[test-docker-compose.yaml]: 

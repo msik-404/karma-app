@@ -116,7 +116,7 @@ Additionally, [docker-compose.yaml] needs:
 
 - KARMA_APP_POSTS_HOST
 
-Simply create .env and place it in the root of project.
+Simply create .env and place it in the `karma-app/karma-app-posts` project folder.
 
 For example:
 

@@ -98,7 +98,7 @@ Additionally, [docker-compose.yaml] uses:
 
 - KARMA_APP_USERS_HOST
 
-Simply create .env and place it in the root of project.
+Simply create .env and place it in the `karma-app/karma-app-users` project folder.
 
 For example:
 

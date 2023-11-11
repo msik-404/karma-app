@@ -3,11 +3,10 @@ version: '3.9'
 services:
   # karma-app-gateway
   gateway-backend:
-    build: ./karma-app-gateway
+    build: ../karma-app-gateway
     image: msik/karma-app-gateway
     env_file: .env
     networks:
-      - karma-app-gateway-net
       - karma-app-net
     ports:
       - 8080:8080
@@ -19,19 +18,20 @@ services:
     image: redis:latest
     hostname: ${KARMA_APP_GATEWAY_REDIS_HOSTNAME}
     networks:
-      - karma-app-gateway-net
+      - karma-app-net
     volumes:
       - gateway-redis-data:/data
-      - ./karma-app-gateway/redis.conf:/usr/local/etc/redis/redis.conf
+      - ../karma-app-gateway/redis.conf:/usr/local/etc/redis/redis.conf
 
   # karma-app-posts
   posts-backend:
-    build: ./karma-app-posts
+    build: ../karma-app-posts
     image: msik/karma-app-posts
     env_file: .env
     hostname: ${KARMA_APP_POSTS_HOST}
+    ports:
+      - 50051:50051
     networks:
-      - karma-app-posts-net
       - karma-app-net
     depends_on:
       posts-mongo:
@@ -39,8 +39,10 @@ services:
   posts-mongo:
     image: mongo:latest
     hostname: ${KARMA_APP_POSTS_DB_HOST}
+    ports:
+      - 27017:27017
     networks:
-      - karma-app-posts-net
+      - karma-app-net
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${KARMA_APP_POSTS_DB_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${KARMA_APP_POSTS_DB_PASSWORD}
@@ -48,29 +50,46 @@ services:
     volumes:
       - posts-db-data:/data/db
       - posts-db-config:/data/configdb
-      - ./keyfile:/opt/keyfile/
+      - ../keyfile:/opt/keyfile/
     healthcheck: # 94 is an error code returned when rs is not initiated.
       test: test "$$(mongosh -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet --eval "try {rs.status().ok} catch(e) {if (e.code == 94) {rs.initiate().ok} else {0} }")" -eq 1
       interval: 10s
       start_period: 30s
     command: mongod --replSet rs0 --keyFile /opt/keyfile
+  posts-mongo-express:
+    image: mongo-express:latest
+    ports:
+      - 8081:8081
+    networks:
+      - karma-app-net
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${KARMA_APP_POSTS_DB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${KARMA_APP_POSTS_DB_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: ${KARMA_APP_POSTS_DB_NAME}
+      ME_CONFIG_MONGODB_PORT: "27017"
+    depends_on:
+      mongo:
+        condition: service_healthy
 
   # karma-app-users
   users-backend:
-    build: ./karma-app-users
-    image: msik/karma-app-users
+    build: ../karma-app-users
     env_file: .env
+    image: msik/karma-app-users
     hostname: ${KARMA_APP_USERS_HOST}
+    ports:
+      - 50052:50051
     networks:
-      - karma-app-users-net
       - karma-app-net
     depends_on:
       - users-mongo
   users-mongo:
     image: mongo:latest
     hostname: ${KARMA_APP_USERS_DB_HOST}
+    ports:
+      - 27018:27017
     networks:
-      - karma-app-users-net
+      - karma-app-net
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${KARMA_APP_USERS_DB_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${KARMA_APP_USERS_DB_PASSWORD}
@@ -78,6 +97,18 @@ services:
     volumes:
       - users-db-data:/data/db
       - users-db-config:/data/configdb
+  users-mongo-express:
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - 8082:8081
+    networks:
+      - karma-app-net
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${KARMA_APP_USERS_DB_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${KARMA_APP_USERS_DB_PASSWORD}
+      ME_CONFIG_MONGODB_SERVER: ${KARMA_APP_USERS_DB_NAME}
+      ME_CONFIG_MONGODB_PORT: "27017"
 
 volumes:
   # karma-app-posts
@@ -97,22 +128,6 @@ volumes:
     driver: local
 
 networks:
-  # Internal web
-  karma-app-gateway-net:
-    name: karma-app-gateway-net
-    driver: bridge
-
-  # Internal web
-  karma-app-posts-net:
-    name: karma-app-posts-net
-    driver: bridge
-
-  # Internal web
-  karma-app-users-net:
-    name: karma-app-users-net
-    driver: bridge
-
-  # Backends connecting web
   karma-app-net:
     name: karma-app-net
     driver: bridge
