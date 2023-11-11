@@ -91,7 +91,7 @@ In this setup client side can use the same exception classes as backend.
 [Encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This 
 EXCEPTION_ID can be parsed with simple regex.
 
-Each encodable exception must implement [EncodableException]and [GrpcStatusException].
+Each encodable exception must implement [EncodableException] and [GrpcStatusException].
 
 karma-app-gateway has [decoding class] implemented, which takes encoded message and returns appropriate exception.
 
