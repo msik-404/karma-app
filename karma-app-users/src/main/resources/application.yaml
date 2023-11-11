@@ -1,0 +1,20 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${KARMA_APP_USERS_DB_USER}:${KARMA_APP_USERS_DB_PASSWORD}@${KARMA_APP_USERS_DB_HOST}:27017
+      database: ${KARMA_APP_USERS_DB_NAME}
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
+
+KarmaAppPosts:
+  grpc:
+    default:
+      port: 50051
+      threadAmount: 8
