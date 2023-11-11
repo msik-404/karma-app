@@ -68,7 +68,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: ${KARMA_APP_POSTS_DB_NAME}
       ME_CONFIG_MONGODB_PORT: "27017"
     depends_on:
-      mongo:
+      posts-mongo:
         condition: service_healthy
 
   # karma-app-users
