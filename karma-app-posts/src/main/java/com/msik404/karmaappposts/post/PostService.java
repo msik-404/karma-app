@@ -59,7 +59,8 @@ public class PostService {
     }
 
     @Transactional
-    public void create(
+    @NonNull
+    public ObjectId create(
             @NonNull ObjectId userId,
             @Nullable String headline,
             @Nullable String text,
@@ -70,6 +71,7 @@ public class PostService {
         if (imageData != null) {
             imageService.save(post.getId(), imageData);
         }
+        return post.getId();
     }
 
     /**

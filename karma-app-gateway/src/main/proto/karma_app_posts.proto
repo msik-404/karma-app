@@ -15,8 +15,8 @@ import "mongo_object_id.proto";
  */
 service Posts {
 
-  /** Used for post creation. New posts are active by default and have karma score of zero. */
-  rpc createPost(CreatePostRequest) returns (google.protobuf.Empty) {}
+  /** Used for post creation, on success returns postId. New posts are active by default and have karma score of zero. */
+  rpc createPost(CreatePostRequest) returns (protomongo.ProtoObjectId) {}
 
   /**
    * Used for post rating. This operation is idempotent. Returns encoded PostNotFoundException, RatingNotFoundException

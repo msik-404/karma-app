@@ -74,7 +74,7 @@ public class PostsGrpcImpl extends PostsGrpc.PostsImplBase {
     @Override
     public void createPost(
             CreatePostRequest request,
-            StreamObserver<Empty> responseObserver) {
+            StreamObserver<ProtoObjectId> responseObserver) {
 
         boolean isSuccess = validate(request, responseObserver);
         if (!isSuccess) {
@@ -82,14 +82,14 @@ public class PostsGrpcImpl extends PostsGrpc.PostsImplBase {
         }
 
         try {
-            postService.create(
+            ObjectId postId = postService.create(
                     new ObjectId(request.getUserId().getHexString()),
                     request.hasHeadline() ? request.getHeadline() : null,
                     request.hasText() ? request.getText() : null,
                     request.hasImageData() ? request.getImageData().toByteArray() : null
             );
 
-            responseObserver.onNext(Empty.getDefaultInstance());
+            responseObserver.onNext(ProtoObjectId.newBuilder().setHexString(postId.toHexString()).build());
             responseObserver.onCompleted();
 
         } catch (FileProcessingException ex) {
