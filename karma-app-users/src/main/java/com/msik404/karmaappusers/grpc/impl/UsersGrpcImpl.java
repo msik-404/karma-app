@@ -64,7 +64,7 @@ public class UsersGrpcImpl extends UsersGrpc.UsersImplBase {
     @Override
     public void createUser(
             CreateUserRequest request,
-            StreamObserver<Empty> responseObserver) {
+            StreamObserver<ProtoObjectId> responseObserver) {
 
         boolean isSuccess = validate(request, responseObserver);
         if (!isSuccess) {
@@ -73,9 +73,9 @@ public class UsersGrpcImpl extends UsersGrpc.UsersImplBase {
 
         try {
             UserDocument doc = GrpcToDocMapper.map(request);
-            service.save(doc);
+            ObjectId userId = service.save(doc);
 
-            responseObserver.onNext(Empty.getDefaultInstance());
+            responseObserver.onNext(ProtoObjectId.newBuilder().setHexString(userId.toHexString()).build());
             responseObserver.onCompleted();
 
         } catch (UnsupportedRoleException | DuplicateUsernameException | DuplicateEmailException |

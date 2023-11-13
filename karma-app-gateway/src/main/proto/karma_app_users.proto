@@ -16,10 +16,10 @@ import "mongo_object_id.proto";
 service Users {
 
   /**
-   * Used for creating new user account. Returns encoded UnsupportedRoleException, DuplicateUsernameException,
-   * DuplicateEmailException, DuplicateUnexpectedFieldException on failure.
+   * Used for creating new user account, on success returns userId. Returns encoded UnsupportedRoleException,
+   * DuplicateUsernameException, DuplicateEmailException, DuplicateUnexpectedFieldException on failure.
    */
-  rpc createUser(CreateUserRequest) returns (google.protobuf.Empty) {}
+  rpc createUser(CreateUserRequest) returns (protomongo.ProtoObjectId) {}
 
   /**
    * Used for updating already existing user account. Only set fields will get updated. Returns encoded

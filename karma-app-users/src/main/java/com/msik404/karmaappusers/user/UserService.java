@@ -22,7 +22,8 @@ public class UserService {
 
     private final UserRepository repository;
 
-    public void save(@NonNull UserDocument userDocument)
+    @NonNull
+    public ObjectId save(@NonNull UserDocument userDocument)
             throws DuplicateUsernameException, DuplicateEmailException, DuplicateUnexpectedFieldException {
 
         try {
@@ -30,6 +31,7 @@ public class UserService {
         } catch (DuplicateKeyException ex) {
             DuplicateKeyExceptionHandler.handle(ex);
         }
+        return userDocument.getId();
     }
 
     public void update(@NonNull UserUpdateDto userUpdateDto)

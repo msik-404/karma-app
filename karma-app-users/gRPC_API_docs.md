@@ -206,7 +206,7 @@ Service for finding, creating and updating users. It also returns data required 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| createUser | [CreateUserRequest](#karmaappusers-CreateUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | Used for creating new user account. Returns encoded UnsupportedRoleException, DuplicateUsernameException, DuplicateEmailException, DuplicateUnexpectedFieldException on failure. |
+| createUser | [CreateUserRequest](#karmaappusers-CreateUserRequest) | [.protomongo.ProtoObjectId](#protomongo-ProtoObjectId) | Used for creating new user account, on success returns userId. Returns encoded UnsupportedRoleException, DuplicateUsernameException, DuplicateEmailException, DuplicateUnexpectedFieldException on failure. |
 | updateUser | [UpdateUserRequest](#karmaappusers-UpdateUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) | Used for updating already existing user account. Only set fields will get updated. Returns encoded UserNotFoundException, UnsupportedRoleException, DuplicateUsernameException, DuplicateEmailException, DuplicateUnexpectedFieldException on failure. |
 | findCredentials | [CredentialsRequest](#karmaappusers-CredentialsRequest) | [CredentialsResponse](#karmaappusers-CredentialsResponse) | Used for fetching credentials for authentication. Returns encoded UnsupportedRoleException, UserNotFoundException on failure. |
 | findUserRole | [.protomongo.ProtoObjectId](#protomongo-ProtoObjectId) | [UserRoleResponse](#karmaappusers-UserRoleResponse) | Used for fetching user&#39;s role of a given user by userId. Returns encoded UserNotFoundException on failure. |
