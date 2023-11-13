@@ -44,6 +44,7 @@ Deployment requires following environment variables to be set.
 - KARMA_APP_POSTS_DB_USER
 - KARMA_APP_POSTS_DB_PASSWORD
 - KARMA_APP_POSTS_HOST
+- SHOULD_INIT_DATA
 
 Simply create .env and place it in the root of project.
 
@@ -64,11 +65,20 @@ KARMA_APP_POSTS_DB_NAME=posts-db
 KARMA_APP_POSTS_DB_USER=dev
 KARMA_APP_POSTS_DB_PASSWORD=dev
 KARMA_APP_POSTS_HOST=karma-app-posts
+
+SHOULD_INIT_DATA=true
 ```
 
-### Note
+### Notes
+
+#### SECRET
 
 KARMA_APP_GATEWAY_SECRET should have at least 32 bytes.
+
+### Dummy data creation
+
+If SHOULD_INIT_DATA is set to true, dummy data of users and posts is persisted. Admin and mod accounts are created. See
+[DataInit.java] for dummy login's and password's to test admin and mod accounts.
 
 ## Keyfile
 
@@ -115,6 +125,7 @@ mentioned docker compose commands.
 Each microservice has JUnit tests written. To run them locally docker and java 21 is required.
 
 Checkout tests section of each microservice README:
+
 - [karma-app-gateway tests]
 - [karma-app-posts tests]
 - [karma-app-users tests]
@@ -147,5 +158,9 @@ Checkout tests section of each microservice README:
 [test-docker-compose.yaml]: https://github.com/msik-404/karma-app/blob/main/test-deployment/docker-compose.yaml
 
 [karma-app-gateway tests]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#tests
+
 [karma-app-posts tests]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#tests
+
 [karma-app-users tests]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#tests
+
+[DataInit.java]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway/src/main/java/com/msik404/karmaappgateway/init/DataInit.java#L

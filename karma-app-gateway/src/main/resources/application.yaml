@@ -16,3 +16,6 @@ KarmaAppUsers:
   grpc:
     host: ${KARMA_APP_USERS_HOST}
     port: 50051
+
+initialize:
+  data: ${SHOULD_INIT_DATA:false}

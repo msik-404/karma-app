@@ -133,7 +133,8 @@ public class PostService {
         });
     }
 
-    public void create(
+    @NonNull
+    public ObjectId create(
             @NonNull PostCreationRequest request,
             @Nullable MultipartFile image) throws FileProcessingException {
 
@@ -145,7 +146,7 @@ public class PostService {
             if (image != null && !image.isEmpty()) {
                 imageData = image.getBytes();
             }
-            grpcService.createPost(clientId, request, imageData);
+            return grpcService.createPost(clientId, request, imageData);
         } catch (IOException ex) {
             throw new FileProcessingException();
         }

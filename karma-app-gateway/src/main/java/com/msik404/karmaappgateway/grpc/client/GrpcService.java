@@ -272,7 +272,8 @@ public class GrpcService {
         return dispatcher.fetchImage(protoPostId);
     }
 
-    public void createPost(
+    @NonNull
+    public ObjectId createPost(
             @NonNull ObjectId clientId,
             @NonNull PostCreationRequest creationRequest,
             @Nullable byte[] imageData
@@ -287,7 +288,7 @@ public class GrpcService {
             requestBuilder.setImageData(ByteString.copyFrom(imageData));
         }
 
-        dispatcher.createPost(requestBuilder.build());
+        return dispatcher.createPost(requestBuilder.build());
     }
 
     public int ratePost(
@@ -363,7 +364,8 @@ public class GrpcService {
         return dispatcher.fetchUserCredentials(request);
     }
 
-    public void registerUser(
+    @NonNull
+    public ObjectId registerUser(
             @NonNull RegisterRequest registerRequest
     ) throws DuplicateUsernameException, DuplicateEmailException, DuplicateUnexpectedFieldException {
 
@@ -380,7 +382,7 @@ public class GrpcService {
             requestBuilder.setLastName(registerRequest.lastName());
         }
 
-        dispatcher.createUser(requestBuilder.build());
+        return dispatcher.createUser(requestBuilder.build());
     }
 
     public void updateUserWithUserPrivilege(

@@ -268,12 +268,13 @@ public class GrpcDispatcherService {
         }
     }
 
-    public void createPost(
+    @NonNull
+    public ObjectId createPost(
             @NonNull CreatePostRequest request
     ) throws InternalServerErrorException, BadEncodingException, FileProcessingException {
 
         try {
-            postsStub.createPost(request).get();
+            return new ObjectId(postsStub.createPost(request).get().getHexString());
         } catch (InterruptedException ex) {
             throw new InternalServerErrorException(ex.getMessage());
         } catch (ExecutionException ex) {
@@ -377,13 +378,14 @@ public class GrpcDispatcherService {
         }
     }
 
-    public void createUser(
+    @NonNull
+    public ObjectId createUser(
             @NonNull CreateUserRequest request
     ) throws InternalServerErrorException, BadEncodingException, UnsupportedRoleException, DuplicateUsernameException,
             DuplicateEmailException, DuplicateUnexpectedFieldException {
 
         try {
-            usersStub.createUser(request).get();
+            return new ObjectId(usersStub.createUser(request).get().getHexString());
         } catch (InterruptedException ex) {
             throw new InternalServerErrorException(ex.getMessage());
         } catch (ExecutionException ex) {
