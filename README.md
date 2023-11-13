@@ -163,4 +163,4 @@ Checkout tests section of each microservice README:
 
 [karma-app-users tests]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#tests
 
-[DataInit.java]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway/src/main/java/com/msik404/karmaappgateway/init/DataInit.java#L
+[DataInit.java]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway/src/main/java/com/msik404/karmaappgateway/init/DataInit.java#L53
