@@ -24,8 +24,8 @@ Check out other karma-app microservices:
 
 # gRPC, Protobuf and protovalidate
 
-[gRPC] is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment. 
-gRPC simplifies microservices API implementation and later the usage of the API. gRPC is self-documenting, all available 
+[gRPC] is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment.
+gRPC simplifies microservices API implementation and later the usage of the API. gRPC is self-documenting, all available
 service methods and message structures can be found inside [karma-app-posts.proto].
 
 In this project to help with message validation [protovalidate-java] is
@@ -42,7 +42,7 @@ some_personal_path/karma-app-posts/target/protoc-dependencies/some-long-code. Un
 following files buf/validate/priv/expression.proto and buf/validate/priv/validate.proto.
 
 Additionally, [mongo_object_id.proto] also needs to be imported in the same manner sa above. Just import path
-to [proto folder]. This is because mongo_object_id defines messages which are used in many microservices. 
+to [proto folder]. This is because mongo_object_id defines messages which are used in many microservices.
 Duplicating them would case code-duplication and smelly code.
 
 # Features
@@ -57,7 +57,7 @@ When some exception which is not critical is thrown on the backend side, it is b
 gRPC code to the caller. Each exception has its unique identifier. With this it can be decoded on the caller side.
 In this setup client side can use the same exception classes as backend.
 
-[Encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This 
+[Encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This
 EXCEPTION_ID can be parsed with simple regex.
 
 Each encodable exception must implement [EncodableException] and [GrpcStatusException].
@@ -88,9 +88,9 @@ To run tests locally see: [test command].
 # Transaction requirements
 
 Because backend of this microservice uses transactions, mongodb cannot be run in standalone server mode. It needs
-either replica-set or cluster. In this case single node replica-set is used. Inside  [mongo health-check] there is a 
-simple script which checks for replica-set status. If status indicates that replica-set is not initiated, initiation 
-happens. If initiation is successful, 1 is returned and container is healthy, else container is unhealthy. Other 
+either replica-set or cluster. In this case single node replica-set is used. Inside  [mongo health-check] there is a
+simple script which checks for replica-set status. If status indicates that replica-set is not initiated, initiation
+happens. If initiation is successful, 1 is returned and container is healthy, else container is unhealthy. Other
 containers wait for mongo container to become healthy.
 
 Mongo replica-set authentication minimally requires `keyfile`.
@@ -132,6 +132,7 @@ KARMA_APP_POSTS_HOST=karma-app-posts
 ```
 
 ## Keyfile
+
 To start the microservice keyfile in the root of the repository is required.
 
 See [Transaction requirement] on how to generate keyfile.
@@ -159,25 +160,45 @@ To remove containers and their data:
 ```
 docker compose down -v
 ```
+
 [spring-boot-starter-data-mongodb]: https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/
+
 [spring-boot-testcontainers]: https://spring.io/blog/2023/06/23/improved-testcontainers-support-in-spring-boot-3-1
+
 [grpc-java]: https://github.com/grpc/grpc-java
+
 [protovalidate-java]: https://github.com/bufbuild/protovalidate-java
+
 [gRPC]: https://grpc.io/
+
 [Testcontainers for Java]: (https://java.testcontainers.org/)
 
 [karma-app-gateway]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway
+
 [karma-app-users]: https://github.com/msik-404/karma-app/tree/main/karma-app-users
+
 [karma-app-posts.proto]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/proto/karma_app_posts.proto
+
 [mongo_object_id.proto]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/proto/mongo_object_id.proto
+
 [proto folder]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts/src/main/proto
+
 [gRPC-API-docs]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/gRPC_API_docs.md
+
 [Encoding class]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/java/com/msik404/karmaappposts/encoding/ExceptionEncoder.java
+
 [encodableException]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/java/com/msik404/karmaappposts/encoding/EncodableException.java
+
 [GrpcStatusException]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/java/com/msik404/karmaappposts/grpc/impl/exception/GrpcStatusException.java
+
 [src/test]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts/src/test
+
 [mongo health-check]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/docker-compose.yaml#L33
+
 [application.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/resources/application.yaml
+
 [docker-compose.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/docker-compose.yaml
+
 [Transaction requirement]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts#transaction-requirements
+
 [test command]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts#building-the-project

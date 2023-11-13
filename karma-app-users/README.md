@@ -24,12 +24,12 @@ Check out other karma-app microservices:
 
 # gRPC, Protobuf and protovalidate
 
-[gRPC] is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment. 
-gRPC simplifies microservices API implementation and later the usage of the API. gRPC is self-documenting, all available 
+[gRPC] is a modern open source high performance Remote Procedure Call (RPC) framework that can run in any environment.
+gRPC simplifies microservices API implementation and later the usage of the API. gRPC is self-documenting, all available
 service methods and message structures can be found inside [karma-app-users.proto].
 
-In this project to help with message validation I use: [protovalidate-java]. This project significantly simplifies 
-validation of messages and reduces the time required to build stable system. Additionally potential user of this 
+In this project to help with message validation I use: [protovalidate-java]. This project significantly simplifies
+validation of messages and reduces the time required to build stable system. Additionally potential user of this
 microservice can see which fields are required and what constraints need to be met to build valid message.
 
 ## Using postman
@@ -40,7 +40,7 @@ some_personal_path/karma-app-users/target/protoc-dependencies/some-long-code. Un
 following files buf/validate/priv/expression.proto and buf/validate/priv/validate.proto.
 
 Additionally, [mongo_object_id.proto] also needs to be imported in the same manner sa above. Just import path
-to [proto folder]. This is because mongo_object_id defines messages which are used in many microservices. Duplicating 
+to [proto folder]. This is because mongo_object_id defines messages which are used in many microservices. Duplicating
 them would case code-duplication and smelly code.
 
 # Features
@@ -55,7 +55,7 @@ When some exception which is not critical is thrown on the backend side, it is b
 gRPC code to the caller. Each exception has its unique identifier. With this it can be decoded on the caller side.
 In this setup client side can use the same exception classes as backend.
 
-[Encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This 
+[Encoding class] inserts "exceptionId EXCEPTION_ID" at the beginning of error message. This
 EXCEPTION_ID can be parsed with simple regex.
 
 Each encodable exception must implement [EncodableException] and [GrpcStatusException].
@@ -137,22 +137,39 @@ docker compose down -v
 ```
 
 [spring-boot-starter-data-mongodb]: https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/
+
 [spring-boot-testcontainers]: https://spring.io/blog/2023/06/23/improved-testcontainers-support-in-spring-boot-3-1
+
 [grpc-java]: https://github.com/grpc/grpc-java
+
 [protovalidate-java]: https://github.com/bufbuild/protovalidate-java
+
 [gRPC]: https://grpc.io/
+
 [Testcontainers for Java]: https://java.testcontainers.org/
 
 [karma-app-gateway]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway
+
 [karma-app-posts]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts
+
 [docker-compose.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/docker-compose.yaml
+
 [application.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/resources/application.yaml
+
 [karma-app-users.proto]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/proto/karma_app_users.proto
+
 [mongo_object_id.proto]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/proto/mongo_object_id.proto
+
 [proto folder]: https://github.com/msik-404/karma-app/tree/main/karma-app-users/src/main/proto
+
 [gRPC-API-docs]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/gRPC_API_docs.md
+
 [Encoding class]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/encoding/ExceptionEncoder.java
+
 [EncodableException]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/encoding/EncodableException.java
+
 [GrpcStatusException]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/grpc/impl/exception/GrpcStatusException.java
+
 [src/test]: https://github.com/msik-404/karma-app/tree/main/karma-app-users/src/test
+
 [test command]: https://github.com/msik-404/karma-app/tree/main/karma-app-users#building-the-project

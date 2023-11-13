@@ -7,6 +7,8 @@ import com.msik404.karmaappposts.grpc.impl.PostsGrpcImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +27,8 @@ public class KarmaAppPostsApplication {
 
     private final PostsGrpcImpl grpcImpl;
 
+    private static final Logger logger = LoggerFactory.getLogger(KarmaAppPostsApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(KarmaAppPostsApplication.class, args);
     }
@@ -32,7 +36,7 @@ public class KarmaAppPostsApplication {
     @Bean
     public CommandLineRunner runner() {
         return (args) -> {
-            System.out.println("GRPC SERVER WILL RUN HERE");
+            logger.info("Posts gRPC server is running here.");
 
             ExecutorService threadPoolExecutor = Executors.newFixedThreadPool(threadPoolSize);
 
