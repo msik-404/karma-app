@@ -18,7 +18,6 @@ import com.msik404.karmaappgateway.user.Role;
 import com.msik404.karmaappgateway.user.exception.UserNotFoundException;
 import com.msik404.karmaappposts.grpc.ChangePostVisibilityRequest;
 import com.msik404.karmaappposts.grpc.CreatePostRequest;
-import com.msik404.karmaappposts.grpc.PostVisibility;
 import com.msik404.karmaappposts.grpc.PostsGrpc;
 import com.msik404.karmaappusers.grpc.CreateUserRequest;
 import com.msik404.karmaappusers.grpc.UsersGrpc;
