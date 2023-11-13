@@ -81,6 +81,8 @@ Docker is required to run tests locally because I use [Testcontainers for Java].
 All the code which comes into contact with data persistence is tested in integration tests under [src/test].
 The rest of the code is much simpler and easier to follow and was tested manually using postman.
 
+To run tests locally see: [test command].
+
 # Starting the microservices
 
 ## Environment variables
@@ -153,3 +155,4 @@ docker compose down -v
 [EncodableException]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/encoding/EncodableException.java
 [GrpcStatusException]: https://github.com/msik-404/karma-app/blob/main/karma-app-users/src/main/java/com/msik404/karmaappusers/grpc/impl/exception/GrpcStatusException.java
 [src/test]: https://github.com/msik-404/karma-app/tree/main/karma-app-users/src/test
+[test command]: https://github.com/msik-404/karma-app/tree/main/karma-app-users#building-the-project

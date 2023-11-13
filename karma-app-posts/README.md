@@ -83,6 +83,8 @@ Docker is required to run tests locally because [Testcontainers for Java] is use
 All the code which comes into contact with data persistence is tested in integration tests under [src/test].
 The rest of the code is much simpler and easier to follow and was tested manually using postman.
 
+To run tests locally see: [test command].
+
 # Transaction requirements
 
 Because backend of this microservice uses transactions, mongodb cannot be run in standalone server mode. It needs
@@ -97,6 +99,7 @@ To generate one simply run:
 ```
 openssl rand -base64 756 > keyfile
 chmod 600 keyfile
+chown 999:999 keyfile
 ```
 
 # Starting the microservice | deployment for testing
@@ -177,3 +180,4 @@ docker compose down -v
 [application.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/src/main/resources/application.yaml
 [docker-compose.yaml]: https://github.com/msik-404/karma-app/blob/main/karma-app-posts/docker-compose.yaml
 [Transaction requirement]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts#transaction-requirements
+[test command]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts#building-the-project

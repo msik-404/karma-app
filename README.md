@@ -12,16 +12,18 @@ logged-in can see active posts.
 karma-app is build using microservice architecture.
 
 Microservices:
+
 - [karma-app-gateway]
 - [karma-app-posts]
 - [karma-app-users]
 
 Be sure to check out their documentations.
 
-There is also [monolith][karma-app-monolith] version of this app which uses PostgreSQL 
+There is also [monolith][karma-app-monolith] version of this app which uses PostgreSQL
 instead of MongoDB.
 
 # REST API documentation
+
 Documentation can be found [here][rest-api-docs].
 
 # Deployment
@@ -69,6 +71,7 @@ KARMA_APP_POSTS_HOST=karma-app-posts
 KARMA_APP_GATEWAY_SECRET should have at least 32 bytes.
 
 ## Keyfile
+
 To start the microservice keyfile in the root of the repository is required.
 
 See [Transaction requirement] on how to generate keyfile.
@@ -99,11 +102,22 @@ docker compose down -v
 ```
 
 ## Deployment for testing
-There is also testing variant of the deployment [docker-compose.yaml][test-docker-compose.yaml], which exposes every 
+
+There is also testing variant of the deployment [docker-compose.yaml][test-docker-compose.yaml], which exposes every
 container port for connection. It also uses mongo-express to easily inspect database contents.
 
-To run this variant, one must go under [/test-deployment] folder, copy .env used for normal deployment and run previously
+To run this variant, one must go under [/test-deployment] folder, copy .env used for normal deployment and run
+previously
 mentioned docker compose commands.
+
+### Microservice test
+
+Each microservice has JUnit tests written. To run them locally docker and java 21 is required.
+
+Checkout tests section of each microservice README:
+- [karma-app-gateway tests]
+- [karma-app-posts tests]
+- [karma-app-users tests]
 
 # Further development
 
@@ -115,11 +129,23 @@ mentioned docker compose commands.
 - Maybe some sort of subreddits feature.
 
 [karma-app-gateway]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway
+
 [karma-app-posts]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts
+
 [karma-app-users]: https://github.com/msik-404/karma-app/tree/main/karma-app-users
+
 [karma-app-monolith]: https://github.com/msik-404/karma-app-monolith
+
 [docker-compose-yaml]: https://github.com/msik-404/karma-app/blob/main/docker-compose.yaml
+
 [rest-api-docs]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#rest-api
+
 [Transaction requirement]: https://github.com/msik-404/karma-app-posts#transaction-requirements
+
 [/test-deployment]: https://github.com/msik-404/karma-app/tree/main/test-deployment
+
 [test-docker-compose.yaml]: https://github.com/msik-404/karma-app/blob/main/test-deployment/docker-compose.yaml
+
+[karma-app-gateway tests]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#tests
+[karma-app-posts tests]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#tests
+[karma-app-users tests]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#tests

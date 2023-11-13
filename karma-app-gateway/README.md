@@ -127,7 +127,7 @@ by reducing required number of request.
 Because ZSet [ZRANGE] cannot be trivially used for getting key-set paginated values, solution had to be found.
 If reader is interested in details look inside [findNextNCached] method code and comments.
 
-#### Note
+#### Notes
 
 Maximum amount of posts cached can exceed [MAX_CACHED_POSTS] this is because of the second rule for caching during rating 
 posts positively:
@@ -139,6 +139,8 @@ Post will get cached if one of these two things take place at the time of rating
 ```
 
 But this would be actually rare because all cached posts get expired after [TIMEOUT].
+
+Additionally, redis may require host machine to have `overcommit_memory=1` set.
 
 # Building the project
 
@@ -161,6 +163,8 @@ Docker is required to run tests locally because I use [Testcontainers for Java].
 Code that is directly communicating with redis is fully tested with integration tests. Test reside in [src/test].
 
 The rest of the code was tested manually using postman.
+
+To run tests locally see: [test command].
 
 [spring-boot-testcontainers]: https://spring.io/blog/2023/06/23/improved-testcontainers-support-in-spring-boot-3-1
 [grpc-java]: https://github.com/grpc/grpc-java
@@ -195,3 +199,4 @@ The rest of the code was tested manually using postman.
 [redis.conf]: https://github.com/msik-404/karma-app/blob/main/karma-app-gateway/redis.conf
 [findNextNCached]: https://github.com/msik-404/karma-app/blob/main/karma-app-gateway/src/main/java/com/msik404/karmaappgateway/post/cache/PostRedisCache.java#L195
 [src/test]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway/src/test
+[test command]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#building-the-project
