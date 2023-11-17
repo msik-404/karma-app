@@ -151,7 +151,7 @@ Checkout tests section of each microservice README:
 
 [rest-api-docs]: https://github.com/msik-404/karma-app/tree/main/karma-app-gateway#rest-api
 
-[Transaction requirement]: https://github.com/msik-404/karma-app-posts#transaction-requirements
+[Transaction requirement]: https://github.com/msik-404/karma-app/tree/main/karma-app-posts#transaction-requirements
 
 [/test-deployment]: https://github.com/msik-404/karma-app/tree/main/test-deployment
 
