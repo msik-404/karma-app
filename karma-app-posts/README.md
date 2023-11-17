@@ -98,7 +98,7 @@ To generate one simply run:
 
 ```
 openssl rand -base64 756 > keyfile
-chmod 600 keyfile
+chmod 400 keyfile
 chown 999:999 keyfile
 ```
 
